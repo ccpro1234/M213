@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baccarat 16 Patterns Full Version</title>
+
+<style>
+:root{
+ --bg-color:#0a0a0a;
+ --panel-bg:#161616;
+--p-color:#2196f3;  /* 🔵 น้ำเงิน P */
+--b-color:#f44336;  /* 🔴 แดง B */
+ --t-color:#4caf50;
+ --text-color:#ffffff;
+ --border-color:#333;
+}
+
+/* 🔥 BODY ตัวเดียว วางตรงนี้ */
+body{
+ background: radial-gradient(circle at 20% 20%, #0f172a, #020617);
+ color:var(--text-color);
+ font-family:sans-serif;
+ margin:0;
+ padding:20px;
+ display:flex;
+ justify-content:center;
+ position:relative;
+ overflow-x:hidden;
+}
+
+/* ===== ต่อด้วย CSS อื่นทั้งหมด ===== */
+.layout{
+  display:flex;
+  gap:20px;
+  max-width:1400px;
+  width:100%;
+  margin:0 auto;           /* ✔ center ทั้งจอ */
+  justify-content:center;  /* ✔ กันเบี้ยวซ้าย */
+}
+
+
+body::before{
+ pointer-events:none; /* 🔥 กันบังคลิก */
+}
+
+/* LEFT */
+.left-panel{
+  width:100%;
+  max-width:320px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.box{
+ background:var(--panel-bg);
+ border:1px solid var(--border-color);
+ border-radius:8px;
+ padding:10px;
+}
+
+.header-title{
+ text-align:center;
+ font-size:12px;
+ color:#888;
+ margin-bottom:10px;
+}
+
+.bead-scroll-area{
+ height:320px;
+ width:100%;
+ overflow:auto;   /* ✔ scroll ได้ทั้ง X/Y */
+ background:#000;
+ border:1px solid #333;
+}
+
+.bead-grid{
+  display:grid;
+  grid-template-rows:repeat(6,38px);   /* 🔥 6 แถวตายตัว */
+  grid-auto-flow:column;
+  grid-auto-columns:38px;              /* 🔥 คอลัมแน่น */
+  gap:2px;                              /* 🔥 ลดระยะห่าง */
+  padding:4px;
+  justify-content:start;
+}
+
+.bead{
+  width:36px;
+  height:36px;
+  font-size:14px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #444;
+}
+
+.b-p{background:var(--p-color)}
+.b-b{background:var(--b-color)}
+.b-t{background:var(--t-color);color:#000}
+.b-empty{border-color:#222}
+
+/* STATS */
+.stat-row{
+ display:flex;
+ justify-content:space-around;
+ font-weight:bold;
+}
+
+/* RIGHT */
+.controls{display:flex;gap:10px;justify-content:center}
+
+.btn{
+ padding:10px 20px;
+ border:none;
+ border-radius:6px;
+ cursor:pointer;
+ color:#fff;
+ font-weight:bold;
+}
+
+.btn-p{background:var(--p-color)}
+.btn-b{background:var(--b-color)}
+.btn-t{background:var(--t-color);color:#000}
+
+.patterns-container{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+}
+.pattern-row{
+  background:#161616;
+  border:1px solid #333;
+  border-radius:6px;
+  padding:8px;
+
+  display:grid;
+  grid-template-columns:60px minmax(0,1fr) 50px 50px; 
+  /* ✔ 4 ช่อง + ป้องกัน 1fr ดัน layout พัง */
+
+  align-items:center;
+  gap:6px;
+}
+
+/* =========================
+   📱 MOBILE FRIENDLY (เพิ่ม)
+   ========================= */
+@media (max-width: 768px){
+
+  .pattern-row{
+    grid-template-columns:70px minmax(0,1fr) 60px 60px; /* ✔ 4 ช่องจริง */
+    font-size:14px;
+    padding:10px;
+  }
+
+  #pct{
+    font-weight:bold;
+    font-size:14px;
+  }
+
+  .pred-circle{
+    width:34px;
+    height:34px;
+    font-size:14px;
+  }
+
+}
+
+/* ===== 🌌 PREMIUM BACKGROUND ===== */
+
+
+body::before{
+ content:"";
+ position:fixed;
+ width:200%;
+ height:200%;
+ background:linear-gradient(45deg,#0ea5e9,#6366f1,#ec4899,#0ea5e9);
+ animation:bgMove 12s linear infinite;
+ opacity:0.08;
+ z-index:0;
+}
+
+@keyframes bgMove{
+ 0%{transform:translate(0,0)}
+ 100%{transform:translate(-50%,-50%)}
+}
+
+/* ===== 🔐 LOGIN ===== */
+#loginScreen{
+ position:fixed;
+ inset:0;
+ background:#000c;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ z-index:999;
+}
+
+.login-card{
+ background:rgba(15,23,42,0.9);
+ padding:25px;
+ border-radius:12px;
+ width:300px;
+ text-align:center;
+ backdrop-filter:blur(10px);
+ box-shadow:0 0 30px #000;
+}
+
+.login-card input{
+ width:100%;
+ padding:10px;
+ margin:5px 0;
+ border-radius:6px;
+ border:none;
+}
+
+.login-card button{
+ width:100%;
+ margin-top:10px;
+ background:#22c55e;
+}
+
+/* ===== HEADER ===== */
+.main-title{
+ text-align:center;
+ font-size:28px;
+ font-weight:800;
+ margin-bottom:15px;
+ letter-spacing:2px;
+ background:linear-gradient(90deg,#0ea5e9,#6366f1,#ec4899);
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+ text-shadow:0 0 20px rgba(14,165,233,0.5);
+}
+
+#app{
+ position:relative;
+ z-index:2;
+}
+
+body::before{
+ z-index:0;
+ pointer-events:none;
+}
+
+/* 🔥 ตัวเทพ กระพริบ */
+.top-pattern{
+ animation: blinkGlow 1s infinite;
+ border:1px solid #ffd700 !important;
+ box-shadow:0 0 10px #ffd700, 0 0 20px #ffd700;
+}
+
+@keyframes blinkGlow{
+ 0%{opacity:1}
+ 50%{opacity:0.4}
+ 100%{opacity:1}
+}
+
+.top-pattern{
+ animation: blinkGlow 1s infinite;
+ border:1px solid #ffd700 !important;
+ box-shadow:0 0 10px #ffd700, 0 0 20px #ffd700;
+}
+
+@keyframes blinkGlow{
+ 0%{opacity:1}
+ 50%{opacity:0.4}
+ 100%{opacity:1}
+}
+.pred-circle.P{
+  background:var(--p-color);
+  color:#fff;
+}
+
+.pred-circle.B{
+  background:var(--b-color);
+  color:#fff;
+}
+
+.pred-circle{
+  min-width:34px;
+  min-height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  visibility:visible;
+}
+
+
+.top-pred{
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:2px solid #ffd700;
+  box-shadow:0 0 8px rgba(255,215,0,0.6);
+
+  animation: glow16 0.8s infinite;
+
+  z-index:10;
+}
+
+
+@keyframes glow16{
+  0%{
+    transform:scale(1);
+    box-shadow:0 0 6px rgba(255,215,0,0.3);
+  }
+  50%{
+    transform:scale(1.08);
+    box-shadow:0 0 12px rgba(255,215,0,0.8);
+  }
+  100%{
+    transform:scale(1);
+    box-shadow:0 0 6px rgba(255,215,0,0.3);
+  }
+}
+
+
+@media (max-width: 768px){
+
+  body{
+    padding:10px;
+  }
+
+  /* ===== LAYOUT CENTER FIX ===== */
+  .layout{
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+  }
+
+  /* ===== LEFT PANEL CENTER ===== */
+  .left-panel{
+    width:100%;
+    max-width:100%;
+    display:flex;
+    align-items:center;
+  }
+
+  /* ===== BOX FIX WIDTH ===== */
+  .box{
+    width:100%;
+    max-width:360px;
+  }
+
+  /* ===== BEAD AREA CENTER + SCROLL ===== */
+  .bead-scroll-area{
+    width:100%;
+    max-width:360px;
+    margin:0 auto;
+    height:240px;
+    overflow:auto;   /* ✔ ต้องกลับมา ไม่งั้นเลื่อนหาย */
+  }
+
+  /* ===== GRID CENTER ===== */
+  .bead-grid{
+    margin:0 auto;
+    justify-content:center;
+  }
+
+  /* ===== PATTERN ===== */
+  .patterns-container{
+    grid-template-columns:1fr;
+  }
+
+  /* ===== BUTTON ===== */
+  .btn{
+    padding:14px 18px;
+    font-size:16px;
+  }
+
+  /* ===== PRED CIRCLE ===== */
+  .pred-circle{
+    width:34px;
+    height:34px;
+    font-size:16px;
+  }
+}
+
+
+.p-text{
+  color:var(--p-color) !important;
+  font-weight:bold;
+}
+
+.b-text{
+  color:var(--b-color) !important;
+  font-weight:bold;
+}
+
+.pattern-code{
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.p-char{
+  color:var(--p-color);
+  font-weight:800;
+}
+
+.b-char{
+  color:var(--b-color);
+  font-weight:800;
+}
+
+
+@media (max-width: 768px){
+
+.bead-grid{
+  display:grid;
+  grid-template-rows:repeat(6,clamp(22px, 4vw, 28px));
+  grid-auto-flow:column;
+  grid-auto-columns:clamp(22px, 4vw, 28px);
+  gap:2px;
+  padding:4px;
+}
+
+
+  .bead{
+    width:26px;
+    height:26px;
+    font-size:11px;
+  }
+
+  .bead-scroll-area{
+    height:220px;
+  }
+}
+
+html, body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+.bead-grid{
+  justify-content:center; /* ✔ สำคัญมาก */
+  margin:0 auto;
+}
+
+
+/* ===== ⚡ QUICK VIEW ===== */
+#quickView{
+  position:fixed;
+  top:15px;
+  right:15px;
+  width:80px;
+  height:80px;
+
+  background:linear-gradient(135deg,#1e1b4b,#312e81);
+  border:1px solid #333;
+  border-radius:12px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  z-index:999;
+  backdrop-filter:blur(8px);
+
+  box-shadow:0 0 15px rgba(0,0,0,0.6);
+}
+
+.qv-title{
+  font-size:10px;
+  color:#aaa;
+  margin-bottom:4px;
+}
+
+.qv-circle{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:bold;
+  font-size:16px;
+
+  background:none;
+}
+
+/* ===== 🚀 QUICK VIEW PRO ===== */
+.qv-circle{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:bold;
+  font-size:16px;
+
+  background:none;
+
+  transition:all 0.2s ease;
+}
+
+/* 🔥 TOP 1 EFFECT */
+.qv-top{
+  animation:qvBlink 0.8s infinite;
+}
+
+/* 🔥 บลิง + ขยาย 1.7x */
+@keyframes qvBlink{
+  0%{
+    transform:scale(1.7);
+    opacity:1;
+  }
+  50%{
+    transform:scale(1.85);
+    opacity:0.5;
+  }
+  100%{
+    transform:scale(1.7);
+    opacity:1;
+  }
+}
+
+/* 🔵🔴 เพิ่ม glow ตามสี (ไม่ใช้วงเหลือง) */
+.qv-top.p-text{
+  text-shadow:0 0 10px rgba(33,150,243,0.8);
+}
+
+.qv-top.b-text{
+  text-shadow:0 0 10px rgba(244,67,54,0.8);
+}
+
+.qv-pct{
+  font-size:11px;
+  margin-top:4px;
+  color:#aaa;
+  font-weight:bold;
+  transition:all 0.2s;
+}
+
+/* 🔥 ถ้าเป็นตัวท็อป ให้สว่างขึ้น */
+.qv-top + .qv-pct{
+  color:#fff;
+  text-shadow:0 0 6px rgba(255,255,255,0.6);
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <!-- 🔐 LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <h2>LOGIN</h2>
+
+    <input id="user" placeholder="User">
+    <input id="pass" type="password" placeholder="Password">
+
+    <label style="font-size:12px">
+      <input type="checkbox" onclick="togglePass()"> แสดงรหัสผ่าน
+    </label>
+
+    <button onclick="login()">เข้าใช้งาน</button>
+
+    <div id="loginMsg" style="color:red;margin-top:10px"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+
+ <div id="quickView">
+  <div class="qv-title">TOP 1</div>
+  <div id="qv-pred" class="qv-circle">-</div>
+  <div id="qv-pct" class="qv-pct">0%</div>
+</div>
+
+  <!-- 🔥 TITLE อยู่กึ่งกลางจริง -->
+  <div class="main-title">AI 16 PATTERN SKILL</div>
+
+  
+
+<div id="expireText" style="
+  text-align:center;
+  margin-bottom:10px;
+  font-size:13px;
+  color:#ff4d4d;
+">
+</div>
+
+
+
+  <!-- 🔥 layout ครอบทั้งหมด -->
+  <div class="layout">
+
+    <!-- LEFT -->
+    <div class="left-panel">
+
+      <div class="box">
+        <div class="header-title">BEAD ROAD</div>
+        <div class="bead-scroll-area">
+          <div class="bead-grid" id="bead-grid"></div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="header-title">TOTAL</div>
+        <div class="stat-row">
+          <span>P: <span id="total-p">0</span></span>
+          <span>B: <span id="total-b">0</span></span>
+          <span>T: <span id="total-t">0</span></span>
+          <span>ALL: <span id="total-all">0</span></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-panel">
+
+      <div class="controls">
+        <button class="btn btn-p" onclick="addResult('P')">P</button>
+        <button class="btn btn-b" onclick="addResult('B')">B</button>
+        <button class="btn btn-t" onclick="addResult('T')">T</button>
+
+        <button class="btn" style="background:#ff9800;color:#000" onclick="undo()">UNDO</button>
+        <button class="btn" style="background:#607d8b" onclick="clearData()">CLEAR</button>
+      </div>
+
+      <div id="patterns-container" class="patterns-container"></div>
+
+    </div>
+
+  </div> <!-- 🔥 ปิด layout -->
+
+</div> <!-- 🔥 ปิด app -->
+
+
+<script>
+
+  // 🔥 วันหมดอายุ
+const EXPIRE_DATE = new Date("2026-04-29");
+
+// 🔐 LOGIN
+function login(){
+ const u = document.getElementById("user").value;
+ const p = document.getElementById("pass").value;
+
+ if(new Date() > EXPIRE_DATE){
+   document.getElementById("loginMsg").innerText="❌ หมดอายุแล้ว";
+   return;
+ }
+
+ if(u==="1234" && p==="1234"){
+
+   history = [];       // 🔥 เคลียร์ก่อน
+   patterns = [];
+
+   document.getElementById("loginScreen").style.display="none";
+   document.getElementById("app").style.display="block";
+
+   init();             // 🔥 สร้างใหม่
+   updateUI();         // 🔥 sync UI
+
+ }else{
+   document.getElementById("loginMsg").innerText="❌ รหัสไม่ถูกต้อง";
+ }
+}
+
+document.getElementById("expireText").innerText =
+"EXPIRE: " + EXPIRE_DATE.toLocaleDateString("th-TH");
+
+
+// 👁 ดูรหัส
+function togglePass(){
+ const p = document.getElementById("pass");
+ p.type = (p.type==="password") ? "text":"password";
+}
+
+
+const PATTERNS=[
+"PPPP","PPPB","PPBP","PPBB",
+"PBPP","PBPB","PBBP","PBBB",
+"BPPP","BPPB","BPBP","BPBB",
+"BBPP","BBPB","BBBP","BBBB"
+];
+
+let history=[];
+let patterns=[];
+
+function renderPatternCode(code){
+  return code.split("").map(c=>{
+    if(c==="P") return `<span class="p-char">P</span>`;
+    if(c==="B") return `<span class="b-char">B</span>`;
+    return c;
+  }).join("");
+}
+
+
+
+function init(){
+  const box = document.getElementById("patterns-container");
+  box.innerHTML = "";
+  patterns = [];
+
+  PATTERNS.forEach((code, i) => {
+    const id = i + 1;
+
+    patterns.push({
+      id,
+      code,
+      step: 0,
+      stats: { p:0, b:0, t:0, total:0, win:0 },
+      currentPrediction: null,
+      results: []
+    });
+
+    const el = document.createElement("div");
+    el.className = "pattern-row";
+
+    // 🔥 FIX: ใส่สี P/B ใน pattern code แล้ว
+    el.innerHTML = `
+      <div class="pattern-code">
+        ${renderPatternCode(code)}
+      </div>
+
+      <div id="dots-${id}" style="
+        display:grid;
+        grid-template-columns:repeat(20,14px);
+        gap:2px;
+        max-height:32px;
+      "></div>
+
+      <div id="pct-${id}">0%</div>
+
+      <div class="pred-circle" id="pred-${id}">-</div>
+    `;
+
+    box.appendChild(el);
+  });
+
+  renderBeadRoad();
+}
+
+
+function recalcAll(){
+
+ patterns.forEach(p=>{
+  p.step = 0;
+  p.results = [];
+  p.stats = {p:0,b:0,t:0,total:0,win:0};
+  p.currentPrediction = null;
+ });
+
+ // 🔥 วิ่งตั้งแต่ตาแรก
+ history.forEach(r=>{
+
+  patterns.forEach(p=>{
+
+    const expect = p.code[p.step];
+    const isWin = (r === expect);
+
+    // ✔ / X ตั้งแต่ตาแรก
+    p.results.push(isWin ? 'W' : 'L');
+
+    if(isWin) p.stats.win++;
+
+    if(r==="P") p.stats.p++;
+    else if(r==="B") p.stats.b++;
+    else p.stats.t++;
+
+    p.stats.total++;
+
+    // 🔁 วนแพท
+    p.step = (p.step + 1) % p.code.length;
+
+    // 👉 ทำนายถัดไป
+    p.currentPrediction = p.code[p.step];
+
+  });
+
+ });
+
+}
+
+function addResult(r){
+ history.push(r);
+
+ recalcAll();   // 🔥 ต้องเรียกตัวนี้เท่านั้น
+
+ updateUI();
+}
+
+function undo(){
+
+ if(history.length === 0) return;
+
+ history.pop();   // ลบตัวล่าสุด
+
+ recalcAll();     // 🔥 คำนวณใหม่ทั้งระบบ
+ updateUI();
+}
+
+
+function updateUI(){
+
+ const total = history.length;
+ const p = history.filter(x=>x==="P").length;
+ const b = history.filter(x=>x==="B").length;
+ const t = history.filter(x=>x==="T").length;
+
+ document.getElementById("total-p").innerText = p;
+ document.getElementById("total-b").innerText = b;
+ document.getElementById("total-t").innerText = t;
+ document.getElementById("total-all").innerText = total;
+
+renderBeadRoad();
+
+// 🔥 STEP 1: หา % สูงสุด
+let maxPct = 0;
+
+patterns.forEach(p => {
+  const pct = p.stats.total
+    ? Math.round((p.stats.win / p.stats.total) * 100)
+    : 0;
+
+  if (pct > maxPct) maxPct = pct;
+});
+
+
+// 🔥 STEP 2: render + ใส่ effect
+patterns.forEach(pat => {
+
+  const pct = pat.stats.total
+    ? Math.round((pat.stats.win / pat.stats.total) * 100)
+    : 0;
+
+  // 👉 ดึงแถว
+  const row = document.getElementById(`pct-${pat.id}`).parentElement;
+
+  // 🔥 ล้าง effect ของสาย (เดิม)
+  row.classList.remove("top-pattern");
+
+  // 🔥 ใส่ effect สาย % สูงสุด (ยังเหมือนเดิม)
+  if (pct === maxPct && pct > 0) {
+    row.classList.add("top-pattern");
+  }
+
+  // =========================
+// 📊 % display
+// =========================
+document.getElementById(`pct-${pat.id}`).innerText = pct + "%";
+
+
+// =========================
+// 🎯 ตัวแทง (prediction)
+// =========================
+const predEl = document.getElementById(`pred-${pat.id}`);
+
+const val = pat.currentPrediction || "-";
+predEl.innerText = val;
+
+
+// =========================
+// 🎨 ล้างสี + เอฟเฟกต์เก่า
+// =========================
+predEl.classList.remove("top-pred", "p-text", "b-text");
+
+
+// =========================
+// 🔵🔴 สีตัวแทง P / B
+// =========================
+if (val === "P") predEl.classList.add("p-text");
+if (val === "B") predEl.classList.add("b-text");
+
+
+// =========================
+// 🔥 เฉพาะสาย % สูงสุด → บลิง + 1.6X
+// =========================
+if (pct === maxPct && pct > 0) {
+  predEl.classList.add("top-pred");
+}
+
+
+
+  // =========================
+  // 🟡 dots render (ของเดิมคุณ)
+  // =========================
+  const dots = document.getElementById(`dots-${pat.id}`);
+  dots.innerHTML = "";
+
+  pat.results.forEach(r => {
+    const d = document.createElement("div");
+
+    d.style.width = "14px";
+    d.style.height = "14px";
+    d.style.fontSize = "10px";
+    d.style.display = "flex";
+    d.style.alignItems = "center";
+    d.style.justifyContent = "center";
+    d.style.borderRadius = "3px";
+
+    if (r === "W") {
+      d.style.background = "#ffd700";
+      d.style.color = "#000";
+      d.innerText = "✔";
+    } else {
+      d.style.background = "#444";
+      d.style.color = "#888";
+      d.innerText = "X";
+    }
+
+  dots.appendChild(d);
+});
+
+dots.scrollLeft = dots.scrollWidth;
+
+}); // 🔥 จบ loop patterns
+
+// =========================
+// 🔥 QUICK VIEW (TOP 1 ตัวเดียว)
+// =========================
+
+const qv = document.getElementById("qv-pred");
+const qvPct = document.getElementById("qv-pct");
+
+// หา pattern ที่ % สูงสุดตัวแรก
+const topPattern = patterns.find(p=>{
+  const pct = p.stats.total
+    ? Math.round((p.stats.win / p.stats.total) * 100)
+    : 0;
+  return pct === maxPct && pct > 0;
+});
+
+// 🔥 ล้าง effect ก่อนทุกครั้ง
+qv.classList.remove("p-text","b-text","qv-top");
+
+if(topPattern){
+  const val = topPattern.currentPrediction || "-";
+
+  const pct = topPattern.stats.total
+    ? Math.round((topPattern.stats.win / topPattern.stats.total) * 100)
+    : 0;
+
+  qv.innerText = val;
+  qvPct.innerText = pct + "%";
+
+  if(val==="P") qv.classList.add("p-text");
+  if(val==="B") qv.classList.add("b-text");
+
+  qv.classList.add("qv-top");
+
+}else{
+  qv.innerText = "-";
+  qvPct.innerText = "0%";
+}
+
+
+function clearData(){
+
+ if(!confirm("ล้างข้อมูลทั้งหมด?")) return;
+
+ history = [];
+
+ recalcAll();
+ updateUI();
+}
+}
+
+function renderBeadRoad(){
+ const grid=document.getElementById("bead-grid");
+ grid.innerHTML="";
+
+ const rows = 6;
+ const cols = Math.ceil(history.length / rows) || 1;
+
+ // 🔥 fix layout grid
+ grid.style.gridTemplateRows = `repeat(${rows},38px)`;
+ grid.style.gridAutoColumns = `38px`;
+
+ for(let i=0;i<rows*cols;i++){
+  const d=document.createElement("div");
+  d.className="bead";
+
+  if(i < history.length){
+   const v = history[i];
+
+   if(v==="P") d.classList.add("b-p");
+   else if(v==="B") d.classList.add("b-b");
+   else d.classList.add("b-t");
+
+   d.innerText = v;
+  }else{
+   d.classList.add("b-empty");
+  }
+
+  grid.appendChild(d);
+ }
+}
+
+init();
+updateUI();
+
+</script>
+
+</body>
+</html>
